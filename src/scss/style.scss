@@ -1,0 +1,177 @@
+$blue: #1867b3;
+$lightBlue: #9ae1fd;
+$lightGrey: #e8e8e8;
+
+$widthBreakpoint: 600px;
+
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  outline: none;
+}
+
+body {
+  background: white;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  width: 100%;
+  background: $lightGrey;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .2);
+  .header__container {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 80px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 1050px) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    @media screen and (max-width: $widthBreakpoint) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 30px 10px;
+    }
+  }
+  .header__control {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .header__button {
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    background-color: $blue;
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 0 10px;
+    transition: .3s;
+    &:hover {
+      opacity: .85;
+      box-shadow: 0 0 3px rgba(0, 0, 0, .5);
+    }
+  }
+  .header__search {
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: $widthBreakpoint) {
+      margin-top: 20px;
+    }
+  }
+  .search__img {
+    height: 14px;
+    margin-right: 6px;
+    cursor: pointer;
+  }
+  .search__input {
+    color: #303030;
+    font-size: 14px;
+    height: 30px;
+    min-width: 250px;
+    padding-left: 8px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 2px 0 #c3c3c3;
+    &::placeholder {
+      color: silver;
+      font-size: 14px;
+    }
+  }
+}
+
+.calendar {
+  visibility: hidden;
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  @media screen and (max-width: 1050px) {
+    padding: 0 10px;
+  }
+  &.visible {
+    visibility: visible;
+  }
+  .calendar__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    .calendar__header__button_back {
+      transform: scale(-1, 1);
+    }
+    .calendar__header__date {
+      font-size: 18px;
+      min-width: 130px;
+      text-align: center;
+    }
+    .calendar__header__button_today {
+      margin-left: 10px;
+    }
+  }
+  .calendar__table {
+    border: 1px solid silver;
+    &.hidden {
+      visibility: hidden;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid silver;
+      &:last-child {
+        border-bottom: none;
+      }
+      .day:last-child {
+        border-right: none;
+      }
+      @media screen and (max-width: $widthBreakpoint) {
+        display: block;
+        border: none;
+      }
+    }
+    .day {
+      height: 100px;
+      display: block;
+      font-size: 12px;
+      width: 100%;
+      border-right: 1px solid silver;
+      color: #acacac;
+      padding: 6px;
+      transition: .2s;
+      cursor: pointer;
+      &:hover {
+        background: #f7f7f7;
+      }
+      &.selected {
+        background: $lightGrey !important;
+        color: #707070;
+        font-weight: bold;
+      }
+      &.not-empty {
+        background-color: $lightBlue;
+        color: gray;
+        .title {
+          font-weight: bold;
+          line-height: 1.6;
+        }
+        .text {
+          font-weight: normal;
+        }
+      }
+      @media screen and (max-width: $widthBreakpoint) {
+        border-right: none;
+        border-bottom: 1px solid silver;
+        height: auto;
+      }
+      .dayEvent {
+        margin-top: 2px;
+      }
+    }
+  }
+}
